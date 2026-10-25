@@ -1,0 +1,8 @@
+---
+import type { Book } from '../data/books';
+const { book, authorName } = Astro.props as { book: Book; authorName: string };
+---
+<article class="book-card"><a class="cover-link" href={`/ksiazki/${book.slug}/`} aria-label={`Zobacz książkę ${book.title}`}><img class="cover" src={book.cover} alt={`Okładka książki ${book.title}`} loading="lazy" /></a><div class="book-info"><p class="book-author">{authorName}</p><h3><a href={`/ksiazki/${book.slug}/`}>{book.title}</a></h3><p class="book-year">{book.year} <span>·</span> {book.formats.length ? book.formats.map((format) => format.label).join(' · ') : 'W przygotowaniu'}</p></div></article>
+<style>
+  .book-card { min-width: 0; }.cover-link { display: block; overflow: hidden; border-radius: 4px; background: #e8e8dd; }.cover { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .4s ease; }.cover-link:hover .cover { transform: scale(1.035); }.book-info { padding: 16px 1px 0; }.book-author, .book-year { margin: 0; color: #788078; font-size: 11px; letter-spacing: .025em; } h3 { margin: 7px 0 8px; font-family: 'Playfair Display', serif; font-size: clamp(17px, 1.8vw, 21px); line-height: 1.25; font-weight: 500; } h3 a { text-decoration: none; } h3 a:hover { color: #a45a3f; }.book-year span { padding: 0 4px; color: #c17b5d; }
+</style>
